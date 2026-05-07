@@ -18,6 +18,7 @@ enum ArchiveExtractionError: LocalizedError {
 
 class ArchiveExtractor {
     private let maxEntryCount = 500_000
+    private let maxTotalSize: Int64 = 10 * 1024 * 1024 * 1024 // 10GB制限
 
     func extract(archive path: String, to destination: String, progress: @escaping (Double) -> Void, log: ((String) -> Void)? = nil) throws {
         setlocale(LC_ALL, "en_US.UTF-8")
@@ -46,18 +47,27 @@ class ArchiveExtractor {
         let formatName = archive_format_name(a).map { String(cString: $0) } ?? "不明"
         log?("libarchive認識形式: \(formatName)")
 
-        let fm = FileManager.default
-        let originalCWD = fm.currentDirectoryPath
-        fm.changeCurrentDirectoryPath(destination)
-        defer { fm.changeCurrentDirectoryPath(originalCWD) }
+        let originalCWD = FileManager.default.currentDirectoryPath
+        FileManager.default.changeCurrentDirectoryPath(destination)
+        defer { FileManager.default.changeCurrentDirectoryPath(originalCWD) }
 
         var entryCount = 0
+        var totalExtractedSize: Int64 = 0
         var entry: OpaquePointer?
 
         while archive_read_next_header(a, &entry) == ARCHIVE_OK {
             entryCount += 1
             if entryCount > maxEntryCount {
                 throw ArchiveExtractionError.extractFailed("エントリ数が制限(\(maxEntryCount))を超過しました")
+            }
+
+            // 合計サイズ制限のチェック
+            let entrySize = archive_entry_size(entry)
+            if entrySize > 0 {
+                totalExtractedSize += entrySize
+                if totalExtractedSize > maxTotalSize {
+                    throw ArchiveExtractionError.extractFailed("展開後の合計サイズが制限(\(ByteCountFormatter.string(fromByteCount: maxTotalSize, countStyle: .file)))を超過しました")
+                }
             }
 
             let flags = ARCHIVE_EXTRACT_TIME

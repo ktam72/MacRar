@@ -13,7 +13,8 @@ targets:
           - BridgingHeader.h
           - Libs
     settings:
-      ARCHS: arm64
+      ARCHS: "$(ARCHS_STANDARD)"
+      EXCLUDED_ARCHS: x86_64
       INFOPLIST_FILE: appMacRar/Info.plist
       SWIFT_OBJC_BRIDGING_HEADER: appMacRar/BridgingHeader.h
       OTHER_LDFLAGS: "$(inherited) -L$(SRCROOT)/Libs/libarchive -larchive -lz -lbz2 -llzma -liconv"

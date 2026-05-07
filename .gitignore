@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+build/
+DerivedData/
+
+# Xcode generated
+*.xcodeproj/
+!*.xcodeproj/xcshareddata/
+*.xcworkspacedata
+*.xccheckout
+*.moved-aside
+xcuserdata/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# unrar build artifacts
+Libs/unrar/*.o
+Libs/unrar/*.obj
+Libs/unrar/*.exe
+Libs/unrar/libunrar.*
+
+# App build
+appMacRar.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+release-app/
+
+# Changelog (private)
+CHANGELOG.md

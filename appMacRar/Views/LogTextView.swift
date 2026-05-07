@@ -1,0 +1,56 @@
+import SwiftUI
+import AppKit
+
+struct LogTextView: NSViewRepresentable {
+    @Binding var logMessages: [String]
+    
+    func makeNSView(context: Context) -> NSScrollView {
+        let scrollView = NSTextView.scrollableTextView()
+        let textView = scrollView.documentView as! NSTextView
+        
+        textView.isEditable = false
+        textView.isSelectable = true
+        textView.font = NSFont.monospacedSystemFont(ofSize: 12, weight: .regular)
+        textView.backgroundColor = NSColor.textBackgroundColor
+        textView.textColor = NSColor.textColor
+        textView.isRichText = false
+        textView.importsGraphics = false
+        textView.isAutomaticQuoteSubstitutionEnabled = false
+        textView.isAutomaticDashSubstitutionEnabled = false
+        textView.isAutomaticTextReplacementEnabled = false
+        
+        // 行番号の表示などはしないシンプルな設定
+        textView.isVerticallyResizable = true
+        textView.isHorizontallyResizable = false
+        textView.autoresizingMask = [.width]
+        
+        // ログの初期設定
+        updateTextView(textView)
+        
+        return scrollView
+    }
+    
+    func updateNSView(_ nsView: NSScrollView, context: Context) {
+        let textView = nsView.documentView as! NSTextView
+        updateTextView(textView)
+    }
+    
+    private func updateTextView(_ textView: NSTextView) {
+        let logText = logMessages.joined(separator: "\n")
+        textView.string = logText
+        
+        // 最新のログまでスクロール
+        if !logMessages.isEmpty {
+            let range = NSRange(location: textView.string.count, length: 0)
+            textView.scrollRangeToVisible(range)
+        }
+    }
+}
+
+struct LogTextView_Previews: PreviewProvider {
+    static var previews: some View {
+        LogTextView(logMessages: .constant(["[10:00:00] ログ1", "[10:00:01] ログ2", "[10:00:02] ログ3"]))
+            .frame(height: 200)
+            .padding()
+    }
+}

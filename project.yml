@@ -1,0 +1,52 @@
+name: appMacRar
+options:
+  bundleIdPrefix: com.example
+  createIntermediateGroups: true
+targets:
+  appMacRar:
+    type: application
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: appMacRar
+        excludes:
+          - BridgingHeader.h
+          - Libs
+    settings:
+      ARCHS: arm64
+      INFOPLIST_FILE: appMacRar/Info.plist
+      SWIFT_OBJC_BRIDGING_HEADER: appMacRar/BridgingHeader.h
+      OTHER_LDFLAGS: "$(inherited) -L$(SRCROOT)/Libs/libarchive -larchive -lz -lbz2 -llzma -liconv"
+      HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Libs/libarchive"
+    entitlements:
+      path: appMacRar/appMacRar.entitlements
+    postCompileScripts:
+      - name: Copy unrar to MacOS
+        script: |
+          TARGET_DIR="${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}"
+          SOURCE_UNRAR="${PROJECT_DIR}/Libs/unrar/unrar"
+          
+          echo "=== unrarコピー開始 ==="
+          echo "PROJECT_DIR: ${PROJECT_DIR}"
+          echo "TARGET_DIR: ${TARGET_DIR}"
+          echo "SOURCE_UNRAR: ${SOURCE_UNRAR}"
+          
+          # 元ファイル存在チェック
+          if [ ! -f "$SOURCE_UNRAR" ]; then
+            echo "❌ エラー: 元のunrarが存在しません: $SOURCE_UNRAR"
+            ls -la "$SOURCE_UNRAR" 2>&1
+            exit 1
+          fi
+          
+          # コピー実行
+          cp -f "$SOURCE_UNRAR" "${TARGET_DIR}/unrar"
+          chmod +x "${TARGET_DIR}/unrar"
+          
+          # コピー確認
+          if [ -f "${TARGET_DIR}/unrar" ]; then
+            echo "✅ unrarコピー成功: ${TARGET_DIR}/unrar"
+            ls -la "${TARGET_DIR}/unrar"
+          else
+            echo "❌ コピー失敗"
+            exit 1
+          fi

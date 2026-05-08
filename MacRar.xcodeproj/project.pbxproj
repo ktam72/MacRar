@@ -8,28 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		12A2E3777F2309EE20C8172B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B78BD44120C36578349B65 /* AppDelegate.swift */; };
+		1C2264CE209A5F36DCB7864D /* FileSystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0DC8001ECDEC749778CB72 /* FileSystemService.swift */; };
 		21934BB0DACF2FC59F9F196C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD82989F4E61F84E996F1A5 /* MainView.swift */; };
-		29E02DFEB210542FE2D122C2 /* ArchiveFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A8B705052435EA9C5D2854 /* ArchiveFormat.swift */; };
 		3C7727D7547FA7812599FD4A /* MacRar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E78CF33FC549AB382874EA87 /* MacRar-icon.png */; };
 		6F38C0CF81167F9D5F6245B1 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAF785A3DF6898E3A9F74C /* AppEntry.swift */; };
-		944F8F840DE26C5B2E7D7AFF /* ArchiveExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1452C1B6A0250909FAAE7F47 /* ArchiveExtractor.swift */; };
+		71D634D3A516017B0D93CFA9 /* LibArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EAD4EA3CEDF2DE0E931DEF /* LibArchiveService.swift */; };
+		7D9AA9A4A6ADF429F99ACE40 /* UnrarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A543A39E861C2C2211E57F9 /* UnrarService.swift */; };
+		83964A47EB2DAE9FB4B1ABE0 /* ArchiveFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7C0AB9AFD87A75EA6BBA2D /* ArchiveFormat.swift */; };
 		9986ADF7625C7AB3A610E817 /* LogTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1AA6AE34CA889A623C1CC0 /* LogTextView.swift */; };
 		9C5DDDFA5753E2AB49C9A915 /* UnrarArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2242979A873DAC944514A967 /* UnrarArchive.swift */; };
+		A16103F305B5ACC223DDF98C /* ExtractionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D173FF37DCA80A70B4A024 /* ExtractionService.swift */; };
 		AD0285D3EB9276AE8B10A898 /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EEAAF2237BDB2856DB55BC6 /* ArchiveViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		124DD80FA82B9A5CF21DB0E7 /* MacRar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacRar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1452C1B6A0250909FAAE7F47 /* ArchiveExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveExtractor.swift; sourceTree = "<group>"; };
 		2242979A873DAC944514A967 /* UnrarArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnrarArchive.swift; sourceTree = "<group>"; };
 		287B1298A0DAD133125E325C /* MacRar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacRar.entitlements; sourceTree = "<group>"; };
 		294F2361A96AFAD622925E15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2EEAAF2237BDB2856DB55BC6 /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
+		4A543A39E861C2C2211E57F9 /* UnrarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnrarService.swift; sourceTree = "<group>"; };
 		58FAF785A3DF6898E3A9F74C /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		5CD82989F4E61F84E996F1A5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		73A8B705052435EA9C5D2854 /* ArchiveFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveFormat.swift; sourceTree = "<group>"; };
+		6E7C0AB9AFD87A75EA6BBA2D /* ArchiveFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveFormat.swift; sourceTree = "<group>"; };
+		80D173FF37DCA80A70B4A024 /* ExtractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractionService.swift; sourceTree = "<group>"; };
 		85B78BD44120C36578349B65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		89EAD4EA3CEDF2DE0E931DEF /* LibArchiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibArchiveService.swift; sourceTree = "<group>"; };
 		9E1AA6AE34CA889A623C1CC0 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextView.swift; sourceTree = "<group>"; };
+		BE0DC8001ECDEC749778CB72 /* FileSystemService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemService.swift; sourceTree = "<group>"; };
 		E78CF33FC549AB382874EA87 /* MacRar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MacRar-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,6 +52,7 @@
 		76AABE52FAA0F078111FBD4C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6E7C0AB9AFD87A75EA6BBA2D /* ArchiveFormat.swift */,
 				2242979A873DAC944514A967 /* UnrarArchive.swift */,
 			);
 			path = Models;
@@ -56,16 +63,26 @@
 			children = (
 				85B78BD44120C36578349B65 /* AppDelegate.swift */,
 				58FAF785A3DF6898E3A9F74C /* AppEntry.swift */,
-				1452C1B6A0250909FAAE7F47 /* ArchiveExtractor.swift */,
-				73A8B705052435EA9C5D2854 /* ArchiveFormat.swift */,
 				294F2361A96AFAD622925E15 /* Info.plist */,
 				E78CF33FC549AB382874EA87 /* MacRar-icon.png */,
 				287B1298A0DAD133125E325C /* MacRar.entitlements */,
 				76AABE52FAA0F078111FBD4C /* Models */,
+				C5A9DDEF0E325498DFB4347C /* Services */,
 				DBC7059897B3B8673A1B7E7A /* ViewModels */,
 				5E49D991C89E64F2DAA16FB7 /* Views */,
 			);
 			path = MacRar;
+			sourceTree = "<group>";
+		};
+		C5A9DDEF0E325498DFB4347C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				80D173FF37DCA80A70B4A024 /* ExtractionService.swift */,
+				BE0DC8001ECDEC749778CB72 /* FileSystemService.swift */,
+				89EAD4EA3CEDF2DE0E931DEF /* LibArchiveService.swift */,
+				4A543A39E861C2C2211E57F9 /* UnrarService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		DBC7059897B3B8673A1B7E7A /* ViewModels */ = {
@@ -183,12 +200,15 @@
 			files = (
 				12A2E3777F2309EE20C8172B /* AppDelegate.swift in Sources */,
 				6F38C0CF81167F9D5F6245B1 /* AppEntry.swift in Sources */,
-				944F8F840DE26C5B2E7D7AFF /* ArchiveExtractor.swift in Sources */,
-				29E02DFEB210542FE2D122C2 /* ArchiveFormat.swift in Sources */,
+				83964A47EB2DAE9FB4B1ABE0 /* ArchiveFormat.swift in Sources */,
 				AD0285D3EB9276AE8B10A898 /* ArchiveViewModel.swift in Sources */,
+				A16103F305B5ACC223DDF98C /* ExtractionService.swift in Sources */,
+				1C2264CE209A5F36DCB7864D /* FileSystemService.swift in Sources */,
+				71D634D3A516017B0D93CFA9 /* LibArchiveService.swift in Sources */,
 				9986ADF7625C7AB3A610E817 /* LogTextView.swift in Sources */,
 				21934BB0DACF2FC59F9F196C /* MainView.swift in Sources */,
 				9C5DDDFA5753E2AB49C9A915 /* UnrarArchive.swift in Sources */,
+				7D9AA9A4A6ADF429F99ACE40 /* UnrarService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,7 @@ enum ArchiveExtractionError: LocalizedError {
     }
 }
 
-class ArchiveExtractor {
+final class LibArchiveService: ExtractionService {
     private let maxEntryCount = 500_000
     private let maxTotalSize: Int64 = 10 * 1024 * 1024 * 1024
 

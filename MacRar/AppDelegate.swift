@@ -3,7 +3,7 @@ import AppKit
 final class AppDelegate: NSObject, NSApplicationDelegate {
     let viewModel = ArchiveViewModel()
 
-    func applicationDidFinishLaunching(_ notification: Notification) {
+    func applicationDidFinishLaunching(_: Notification) {
         NSAppleEventManager.shared().setEventHandler(
             self,
             andSelector: #selector(handleAppleEvent(_:replyEvent:)),
@@ -12,13 +12,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         )
     }
 
-    func application(_ application: NSApplication, openFiles filenames: [String]) {
+    func application(_: NSApplication, openFiles filenames: [String]) {
         for path in filenames {
             viewModel.processFile(at: path)
         }
     }
 
-    @objc private func handleAppleEvent(_ event: NSAppleEventDescriptor, replyEvent: NSAppleEventDescriptor) {
+    @objc private func handleAppleEvent(_ event: NSAppleEventDescriptor, replyEvent _: NSAppleEventDescriptor) {
         guard let descriptorList = event.paramDescriptor(forKeyword: keyDirectObject) else { return }
         for index in 1 ... descriptorList.numberOfItems {
             guard let urlStr = descriptorList.atIndex(index)?.stringValue,

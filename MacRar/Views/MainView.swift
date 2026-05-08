@@ -49,7 +49,7 @@ struct MainView: View {
             }
             .padding()
 
-            if viewModel.isProcessing {
+            if viewModel.extractionState == .running {
                 VStack(spacing: 8) {
                     ProgressView(value: viewModel.extractionProgress) {
                         Text("解凍中...")

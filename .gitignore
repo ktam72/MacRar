@@ -29,5 +29,5 @@ Libs/unrar/libunrar.*
 MacRar.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
 release-app/
 
-# Changelog (private)
-CHANGELOG.md
+# Changelog (private, root only)
+/CHANGELOG.md

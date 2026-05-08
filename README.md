@@ -70,7 +70,6 @@ appMacRar/
 │   └── project.pbxproj        Xcode プロジェクトファイル
 ├── Package.swift              SwiftPM（現状 unused）
 ├── LICENSE                    Apache 2.0
-├── CHANGELOG.md               変更履歴
 ├── Libs/
 │   ├── unrar/
 │   │   ├── unrar              プリコンパイル済みバイナリ

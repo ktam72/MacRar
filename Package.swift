@@ -14,12 +14,12 @@ let package = Package(
                 .headerSearchPath("Libs/unrar"),
                 .define("_FILE_OFFSET_BITS", to: "64"),
                 .define("_LARGEFILE_SOURCE"),
-                .define("RAR_SMP"),
+                .define("RAR_SMP")
             ],
             linkerSettings: [
                 .linkedLibrary("c++"),
                 .linkedLibrary("unrar", .when(platforms: [.macOS])),
-                .unsafeFlags(["-L", "Libs/unrar"], .when(platforms: [.macOS])),
+                .unsafeFlags(["-L", "Libs/unrar"], .when(platforms: [.macOS]))
             ]
         )
     ]

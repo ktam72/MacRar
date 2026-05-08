@@ -104,7 +104,7 @@ struct DropZoneView: View {
 
     func handleDrop(providers: [NSItemProvider]) {
         for provider in providers {
-            provider.loadItem(forTypeIdentifier: "public.file-url", options: nil) { item, error in
+            provider.loadItem(forTypeIdentifier: "public.file-url", options: nil) { item, _ in
                 if let data = item as? Data,
                    let url = URL(dataRepresentation: data, relativeTo: nil) {
                     DispatchQueue.main.async {

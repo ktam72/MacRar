@@ -2,7 +2,10 @@ import Foundation
 
 enum ArchiveFormat: CaseIterable {
     case rar
-    case sevenZip, zip, gzip, bzip2, xz, lzip, tar, lzh, iso, cab, arj, cpio, zCompress
+    case sevenZip, zip, gzip, bzip2
+    // swiftlint:disable:next identifier_name
+    case xz
+    case lzip, tar, lzh, iso, cab, arj, cpio, zCompress
 
     var displayName: String {
         switch self {
@@ -25,20 +28,26 @@ enum ArchiveFormat: CaseIterable {
 
     var usesUnrar: Bool { self == .rar }
 
-    private static let signatures: [(ArchiveFormat, offset: Int, bytes: [UInt8])] = [
-        (.rar,      0, [0x52, 0x61, 0x72, 0x21, 0x1A, 0x07]),
-        (.sevenZip, 0, [0x37, 0x7A, 0xBC, 0xAF, 0x27, 0x1C]),
-        (.zip,      0, [0x50, 0x4B, 0x03, 0x04]),
-        (.gzip,     0, [0x1F, 0x8B, 0x08]),
-        (.bzip2,    0, [0x42, 0x5A, 0x68]),
-        (.xz,       0, [0xFD, 0x37, 0x7A, 0x58, 0x5A, 0x00]),
-        (.lzip,     0, [0x4C, 0x5A, 0x49, 0x50]),
-        (.zCompress,0, [0x1F, 0x9D]),
-        (.zCompress,0, [0x1F, 0xA0]),
-        (.cab,      0, [0x4D, 0x53, 0x43, 0x46]),
-        (.cab,      0, [0x49, 0x53, 0x63, 0x28]),
-        (.arj,      0, [0x60, 0xEA]),
-        (.lzh,      2, [0x2D, 0x6C, 0x68]),
+    private struct FormatSignature {
+        let format: ArchiveFormat
+        let offset: Int
+        let bytes: [UInt8]
+    }
+
+    private static let signatures: [FormatSignature] = [
+        FormatSignature(format: .rar, offset: 0, bytes: [0x52, 0x61, 0x72, 0x21, 0x1A, 0x07]),
+        FormatSignature(format: .sevenZip, offset: 0, bytes: [0x37, 0x7A, 0xBC, 0xAF, 0x27, 0x1C]),
+        FormatSignature(format: .zip, offset: 0, bytes: [0x50, 0x4B, 0x03, 0x04]),
+        FormatSignature(format: .gzip, offset: 0, bytes: [0x1F, 0x8B, 0x08]),
+        FormatSignature(format: .bzip2, offset: 0, bytes: [0x42, 0x5A, 0x68]),
+        FormatSignature(format: .lzip, offset: 0, bytes: [0x4C, 0x5A, 0x49, 0x50]),
+        FormatSignature(format: .xz, offset: 0, bytes: [0xFD, 0x37, 0x7A, 0x58, 0x5A, 0x00]),
+        FormatSignature(format: .zCompress, offset: 0, bytes: [0x1F, 0x9D]),
+        FormatSignature(format: .zCompress, offset: 0, bytes: [0x1F, 0xA0]),
+        FormatSignature(format: .cab, offset: 0, bytes: [0x4D, 0x53, 0x43, 0x46]),
+        FormatSignature(format: .cab, offset: 0, bytes: [0x49, 0x53, 0x63, 0x28]),
+        FormatSignature(format: .arj, offset: 0, bytes: [0x60, 0xEA]),
+        FormatSignature(format: .lzh, offset: 2, bytes: [0x2D, 0x6C, 0x68])
     ]
 
     static func detect(from url: URL) -> ArchiveFormat? {
@@ -48,11 +57,11 @@ enum ArchiveFormat: CaseIterable {
         let data = fileHandle.readData(ofLength: 260)
         guard data.count >= 4 else { return nil }
 
-        for (format, offset, sigBytes) in signatures {
-            guard offset + sigBytes.count <= data.count else { continue }
-            let slice = Array(data[offset..<(offset + sigBytes.count)])
-            if slice == sigBytes {
-                return format
+        for signature in signatures {
+            guard signature.offset + signature.bytes.count <= data.count else { continue }
+            let slice = Array(data[signature.offset..<(signature.offset + signature.bytes.count)])
+            if slice == signature.bytes {
+                return signature.format
             }
         }
 

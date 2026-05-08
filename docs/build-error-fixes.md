@@ -47,3 +47,26 @@ settings:
 | Path Traversal 対策 | `ArchiveExtractor.swift` | `ARCHIVE_EXTRACT_SECURE_NODOTDOT` 等のセキュリティフラグ（元から存在） |
 | Hardened Runtime | `project.yml` | `ENABLE_HARDENED_RUNTIME` は署名要件が厳格化されるため除外 |
 | App Sandbox | `appMacRar.entitlements` | Sandbox 導入には保存先選択ダイアログ等の設計変更が必要なため、現状は無効 |
+
+## SwiftLint コード品質修正
+
+### 対応内容
+
+SwiftLint（`swiftlint --strict`）を導入し、全37件の違反を修正。
+
+| カテゴリ | 件数 | 対応内容 |
+| :--- | :--- | :--- |
+| 末尾ホワイトスペース | 10 | 自動修正（`swiftlint --fix`） |
+| カンマ前後のスペース | 12 | 自動修正 |
+| 末尾カンマ | 3 | 自動修正 |
+| クロージャ未使用引数 | 1 | 自動修正 |
+| Force Cast | 2 | `as!` → `guard let ... as?` で安全なアンラップに修正 |
+| 識別子名が短すぎる | 4 | `a`→`archive`、`r`→`resultCode`、`p`→`value` にリネーム、`xz` は lint 抑制コメント |
+| 循環的複雑度・関数長 | 2 | `extract()` を6つの private メソッドに分割（複雑度13→4、関数長77→23行） |
+| 行長超過（120文字超） | 2 | メソッドシグネチャとエラーメッセージを改行分割 |
+| 3要素タプル | 1 | `FormatSignature` 構造体に置き換え |
+
+### 備考
+
+- `ArchiveExtractor.swift` の `archive_read_new()` は `OpaquePointer?` を返すため `guard let` でアンラップが必要
+- `archive_entry_pathname(entry)` 等の C API は非 optional の `OpaquePointer` を要求するため、呼び出し側で `entry!` の force unwrap を行う

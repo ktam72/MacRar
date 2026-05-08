@@ -102,9 +102,9 @@ class ArchiveViewModel: ObservableObject {
                 try self.archiveExtractor.extract(
                     archive: path,
                     to: destination,
-                    progress: { p in
+                    progress: { value in
                         DispatchQueue.main.async {
-                            self.extractionProgress = p
+                            self.extractionProgress = value
                         }
                     },
                     log: { msg in

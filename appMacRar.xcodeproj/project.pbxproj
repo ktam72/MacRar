@@ -1,0 +1,379 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15C29A0EEF880D4CEB446CB3 /* ArchiveExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD71A02CE03AEE88E136218C /* ArchiveExtractor.swift */; };
+		275996166E4B89B7A10AEF00 /* MacRar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B67281F69AE15FE807062A8 /* MacRar-icon.png */; };
+		4D42DC1D5A761730809EF8ED /* ArchiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9095D8CFED0E42E233078AD7 /* ArchiveViewModel.swift */; };
+		69E63F944E419F1E9E3237F1 /* LogTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC91FC83B1579C64E9C3C73 /* LogTextView.swift */; };
+		91330DF4D5D3BBBFC1A21682 /* ArchiveFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30737A2E1D7FF89B94B824E9 /* ArchiveFormat.swift */; };
+		D5338B40F1F3D02D903A2D4D /* UnrarArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68174DF38D6B9FF9D7964633 /* UnrarArchive.swift */; };
+		E0F6C63FD0A1FA75418BCE20 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAFC89DB777651E2D19DB8 /* AppEntry.swift */; };
+		FBDB07E96C72990552DA813B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B66087E34B25ACC15A79F /* MainView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		292B66087E34B25ACC15A79F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		30737A2E1D7FF89B94B824E9 /* ArchiveFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveFormat.swift; sourceTree = "<group>"; };
+		3108534ACFB686C2E5B93863 /* appMacRar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appMacRar.entitlements; sourceTree = "<group>"; };
+		3DC91FC83B1579C64E9C3C73 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextView.swift; sourceTree = "<group>"; };
+		428B01AF5D7FEBC2F845ED17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5B67281F69AE15FE807062A8 /* MacRar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MacRar-icon.png"; sourceTree = "<group>"; };
+		68174DF38D6B9FF9D7964633 /* UnrarArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnrarArchive.swift; sourceTree = "<group>"; };
+		9095D8CFED0E42E233078AD7 /* ArchiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewModel.swift; sourceTree = "<group>"; };
+		AD71A02CE03AEE88E136218C /* ArchiveExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveExtractor.swift; sourceTree = "<group>"; };
+		B9FA9EFAD72D4ED495CC6053 /* appMacRar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appMacRar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFCAFC89DB777651E2D19DB8 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		031809AC53874A9146F5929F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9FA9EFAD72D4ED495CC6053 /* appMacRar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20C36BF9F31022F965384C68 /* appMacRar */ = {
+			isa = PBXGroup;
+			children = (
+				BFCAFC89DB777651E2D19DB8 /* AppEntry.swift */,
+				3108534ACFB686C2E5B93863 /* appMacRar.entitlements */,
+				AD71A02CE03AEE88E136218C /* ArchiveExtractor.swift */,
+				30737A2E1D7FF89B94B824E9 /* ArchiveFormat.swift */,
+				428B01AF5D7FEBC2F845ED17 /* Info.plist */,
+				5B67281F69AE15FE807062A8 /* MacRar-icon.png */,
+				E30671D9031811D0AE1C0BD4 /* Models */,
+				24E01E5236B76FFDB236C3C3 /* ViewModels */,
+				6E2969F09B5D94C77C9A2605 /* Views */,
+			);
+			path = appMacRar;
+			sourceTree = "<group>";
+		};
+		24E01E5236B76FFDB236C3C3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9095D8CFED0E42E233078AD7 /* ArchiveViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		6E2969F09B5D94C77C9A2605 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3DC91FC83B1579C64E9C3C73 /* LogTextView.swift */,
+				292B66087E34B25ACC15A79F /* MainView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		845E84D9383C1715021F04B9 = {
+			isa = PBXGroup;
+			children = (
+				20C36BF9F31022F965384C68 /* appMacRar */,
+				031809AC53874A9146F5929F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E30671D9031811D0AE1C0BD4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				68174DF38D6B9FF9D7964633 /* UnrarArchive.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA5AE7C6FD3FC213BDF5631B /* appMacRar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E744BC8023E3AEF40F7F6543 /* Build configuration list for PBXNativeTarget "appMacRar" */;
+			buildPhases = (
+				E481638602158BA579807CF7 /* Sources */,
+				3DE2DF8501D8FA506C82ABFE /* Copy unrar to MacOS */,
+				FD2EDF0E3F95BF809441833E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = appMacRar;
+			packageProductDependencies = (
+			);
+			productName = appMacRar;
+			productReference = B9FA9EFAD72D4ED495CC6053 /* appMacRar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4AB42CF4F69EE55DB29D66F6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 7A77F9231D8DB8F915332A16 /* Build configuration list for PBXProject "appMacRar" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 845E84D9383C1715021F04B9;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 031809AC53874A9146F5929F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA5AE7C6FD3FC213BDF5631B /* appMacRar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FD2EDF0E3F95BF809441833E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				275996166E4B89B7A10AEF00 /* MacRar-icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3DE2DF8501D8FA506C82ABFE /* Copy unrar to MacOS */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy unrar to MacOS";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_DIR=\"${TARGET_BUILD_DIR}/${EXECUTABLE_FOLDER_PATH}\"\nSOURCE_UNRAR=\"${PROJECT_DIR}/Libs/unrar/unrar\"\n\necho \"=== unrarコピー開始 ===\"\necho \"PROJECT_DIR: ${PROJECT_DIR}\"\necho \"TARGET_DIR: ${TARGET_DIR}\"\necho \"SOURCE_UNRAR: ${SOURCE_UNRAR}\"\n\n# 元ファイル存在チェック\nif [ ! -f \"$SOURCE_UNRAR\" ]; then\n  echo \"❌ エラー: 元のunrarが存在しません: $SOURCE_UNRAR\"\n  ls -la \"$SOURCE_UNRAR\" 2>&1\n  exit 1\nfi\n\n# コピー実行\ncp -f \"$SOURCE_UNRAR\" \"${TARGET_DIR}/unrar\"\nchmod +x \"${TARGET_DIR}/unrar\"\n\n# コピー確認\nif [ -f \"${TARGET_DIR}/unrar\" ]; then\n  echo \"✅ unrarコピー成功: ${TARGET_DIR}/unrar\"\n  ls -la \"${TARGET_DIR}/unrar\"\nelse\n  echo \"❌ コピー失敗\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E481638602158BA579807CF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0F6C63FD0A1FA75418BCE20 /* AppEntry.swift in Sources */,
+				15C29A0EEF880D4CEB446CB3 /* ArchiveExtractor.swift in Sources */,
+				91330DF4D5D3BBBFC1A21682 /* ArchiveFormat.swift in Sources */,
+				4D42DC1D5A761730809EF8ED /* ArchiveViewModel.swift in Sources */,
+				69E63F944E419F1E9E3237F1 /* LogTextView.swift in Sources */,
+				FBDB07E96C72990552DA813B /* MainView.swift in Sources */,
+				D5338B40F1F3D02D903A2D4D /* UnrarArchive.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2AC43F084C4984278E748E51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		36A123B4BB8B0B5E1AD12C23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A5A5B2029C816E1B8B2EBA34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = appMacRar/appMacRar.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				EXCLUDED_ARCHS = x86_64;
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Libs/libarchive";
+				INFOPLIST_FILE = appMacRar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_LDFLAGS = "$(inherited) -L$(SRCROOT)/Libs/libarchive -larchive -lz -lbz2 -llzma -liconv";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.appMacRar;
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = appMacRar/BridgingHeader.h;
+			};
+			name = Release;
+		};
+		DABCC03E7A33A71657F791EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = appMacRar/appMacRar.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				EXCLUDED_ARCHS = x86_64;
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Libs/libarchive";
+				INFOPLIST_FILE = appMacRar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				OTHER_LDFLAGS = "$(inherited) -L$(SRCROOT)/Libs/libarchive -larchive -lz -lbz2 -llzma -liconv";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.appMacRar;
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = appMacRar/BridgingHeader.h;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7A77F9231D8DB8F915332A16 /* Build configuration list for PBXProject "appMacRar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AC43F084C4984278E748E51 /* Debug */,
+				36A123B4BB8B0B5E1AD12C23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E744BC8023E3AEF40F7F6543 /* Build configuration list for PBXNativeTarget "appMacRar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DABCC03E7A33A71657F791EC /* Debug */,
+				A5A5B2029C816E1B8B2EBA34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4AB42CF4F69EE55DB29D66F6 /* Project object */;
+}

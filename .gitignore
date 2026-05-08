@@ -4,8 +4,6 @@ build/
 DerivedData/
 
 # Xcode generated
-*.xcodeproj/
-!*.xcodeproj/xcshareddata/
 *.xcworkspacedata
 *.xccheckout
 *.moved-aside

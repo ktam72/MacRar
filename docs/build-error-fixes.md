@@ -70,3 +70,52 @@ SwiftLint（`swiftlint --strict`）を導入し、全37件の違反を修正。
 
 - `ArchiveExtractor.swift` の `archive_read_new()` は `OpaquePointer?` を返すため `guard let` でアンラップが必要
 - `archive_entry_pathname(entry)` 等の C API は非 optional の `OpaquePointer` を要求するため、呼び出し側で `entry!` の force unwrap を行う
+
+## 静的解析・セキュリティスキャンツール評価
+
+### 実施結果サマリ
+
+| ツール | バージョン | 対象 | 結果 |
+| :--- | :--- | :--- | :--- |
+| cppcheck | 2.20.0 | C/C++ ヘッダ (3ファイル) | 問題なし |
+| gitleaks | 8.30.1 | Git 履歴全9コミット | `no leaks found` |
+| git-secrets | 最新 | Git 履歴 + 全ファイル | 問題なし |
+| semgrep | 1.157.0 | Swift/C ファイル (54ルール) | 0 findings |
+| trivy | 0.70.0 | ファイルシステム + Git リポジトリ | 脆弱性・シークレットともに検出なし |
+
+### ツール別詳細
+
+#### cppcheck
+
+- プロジェクト内の C/C++ 実装コード（.c/.cpp）はゼロ
+- `BridgingHeader.h` と `libarchive` 公開ヘッダ（`archive.h`, `archive_entry.h`）をチェックしたが、警告・エラーなし
+- libarchive ヘッダの `#ifdef` 分岐が多いため、情報メッセージ（`toomanyconfigs`）のみ出力
+
+#### gitleaks
+
+- リポジトリ全9コミット・約190KBをスキャン
+- 認証情報・APIキー等の漏洩は検出されず
+
+#### git-secrets
+
+- `--scan-history` で全コミット、`--scan -r` で全ファイルをスキャン
+- 問題なし
+
+#### semgrep
+
+- 自動検出ルール（Swift 2 + C 5 + マルチ言語 47 = 計54ルール）を実行
+- 現行の Swift 用ルールセットは限定的だが、現状検出可能な問題はなし
+
+#### trivy
+
+- **脆弱性スキャン**: 対象ファイルなし。SwiftPM の `Package.resolved` が .gitignore で除外されており、バージョン情報が解決不可のためスキップされた
+- **シークレットスキャン**: 問題なし
+- 本プロジェクト（ネイティブ macOS アプリ、プリコンパイル済みバイナリ）では Trivy の検出対象となる lock ファイルが不足しているため、脆弱性診断の効果は限定的
+
+### 改善提案
+
+| 提案 | 効果 | 難易度 |
+| :--- | :--- | :--- |
+| `Package.resolved` を Git 管理下に含める | Trivy 等で依存ライブラリの CVE 追跡が可能に | 低 |
+| `Libs/libarchive/` のバージョン管理を明示化 | 既知 CVE の手動追跡が容易に | 低 |
+| `Libs/unrar/` の更新手順を CI に組み込む | サードパーティ脆弱性への迅速な対応 | 中 |

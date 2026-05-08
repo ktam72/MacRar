@@ -58,6 +58,7 @@ class ArchiveViewModel: ObservableObject {
     }
 
     // MARK: - ファイル処理入口
+
     func processFile(at path: String) {
         isProcessing = true
         extractionProgress = 0.0
@@ -93,13 +94,14 @@ class ArchiveViewModel: ObservableObject {
     }
 
     // MARK: - libarchive による解凍
+
     private func extractWithLibArchive(at path: String, to destination: String) {
         addLog("解凍開始（libarchive）")
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             do {
-                try self.archiveExtractor.extract(
+                try archiveExtractor.extract(
                     archive: path,
                     to: destination,
                     progress: { value in
@@ -127,6 +129,7 @@ class ArchiveViewModel: ObservableObject {
     }
 
     // MARK: - unrar による解凍
+
     private func extractWithUnrar(at path: String, to destination: String) {
         guard let unrarPath = Self.findUnrarPath() else {
             addLog("❌ エラー: unrarが見つかりません")
@@ -187,6 +190,7 @@ class ArchiveViewModel: ObservableObject {
     }
 
     // MARK: - unrar進捗解析
+
     private func parseUnrarProgress(from output: String) {
         let pattern = #"(\d+)%$"#
         guard let regex = try? NSRegularExpression(pattern: pattern),
@@ -199,6 +203,7 @@ class ArchiveViewModel: ObservableObject {
     }
 
     // MARK: - ログ出力
+
     func addLog(_ message: String) {
         let timestamp = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
         let logEntry = "[\(timestamp)] \(message)"
@@ -213,6 +218,7 @@ class ArchiveViewModel: ObservableObject {
     }
 
     // MARK: - 状態リセット
+
     private func resetState() {
         DispatchQueue.main.async {
             self.isProcessing = false
@@ -221,6 +227,7 @@ class ArchiveViewModel: ObservableObject {
     }
 
     // MARK: - unrarパス検索
+
     private static func findUnrarPath() -> String? {
         if let exeURL = Bundle.main.executableURL {
             let unrarURL = exeURL.deletingLastPathComponent().appendingPathComponent("unrar")
@@ -240,6 +247,7 @@ class ArchiveViewModel: ObservableObject {
     }
 
     // MARK: - 展開先ディレクトリ作成
+
     private func createExtractionDirectory(for path: String) -> String {
         let url = URL(fileURLWithPath: path)
         let parentDir = url.deletingLastPathComponent()

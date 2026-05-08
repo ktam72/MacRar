@@ -1,5 +1,5 @@
-import SwiftUI
 import AppKit
+import SwiftUI
 
 struct MainView: View {
     @StateObject private var viewModel = ArchiveViewModel()
@@ -108,7 +108,7 @@ struct DropZoneView: View {
                 if let data = item as? Data,
                    let url = URL(dataRepresentation: data, relativeTo: nil) {
                     DispatchQueue.main.async {
-                        self.viewModel.processFile(at: url.path)
+                        viewModel.processFile(at: url.path)
                     }
                 }
             }

@@ -8,10 +8,10 @@ enum ArchiveExtractionError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .openFailed(let msg): return "アーカイブを開けません: \(msg)"
-        case .extractFailed(let msg): return "展開エラー: \(msg)"
-        case .unsupportedFormat: return "未対応のアーカイブ形式です"
-        case .emptyArchive: return "アーカイブが空です"
+        case let .openFailed(msg): "アーカイブを開けません: \(msg)"
+        case let .extractFailed(msg): "展開エラー: \(msg)"
+        case .unsupportedFormat: "未対応のアーカイブ形式です"
+        case .emptyArchive: "アーカイブが空です"
         }
     }
 }
@@ -136,10 +136,10 @@ class ArchiveExtractor {
         log: ((String) -> Void)?
     ) throws {
         let flags = ARCHIVE_EXTRACT_TIME
-                  | ARCHIVE_EXTRACT_SECURE_NODOTDOT
-                  | ARCHIVE_EXTRACT_SECURE_SYMLINKS
-                  | ARCHIVE_EXTRACT_SECURE_NOABSOLUTEPATHS
-                  | ARCHIVE_EXTRACT_UNLINK
+            | ARCHIVE_EXTRACT_SECURE_NODOTDOT
+            | ARCHIVE_EXTRACT_SECURE_SYMLINKS
+            | ARCHIVE_EXTRACT_SECURE_NOABSOLUTEPATHS
+            | ARCHIVE_EXTRACT_UNLINK
         let result = archive_read_extract(archive, entry, flags)
 
         switch result {
@@ -167,7 +167,7 @@ class ArchiveExtractor {
 
     private func closeArchive(_ archive: OpaquePointer, log: ((String) -> Void)?) throws {
         let closeResult = archive_read_close(archive)
-        if closeResult != ARCHIVE_OK && closeResult != ARCHIVE_EOF {
+        if closeResult != ARCHIVE_OK, closeResult != ARCHIVE_EOF {
             let err = archive_error_string(archive).map { String(cString: $0) } ?? "不明"
             log?("closeエラー: \(err)")
             throw ArchiveExtractionError.extractFailed(err)

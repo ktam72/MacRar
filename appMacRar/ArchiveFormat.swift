@@ -9,24 +9,26 @@ enum ArchiveFormat: CaseIterable {
 
     var displayName: String {
         switch self {
-        case .rar: return "RAR"
-        case .sevenZip: return "7z"
-        case .zip: return "ZIP"
-        case .gzip: return "GZIP"
-        case .bzip2: return "BZIP2"
-        case .xz: return "XZ"
-        case .lzip: return "LZIP"
-        case .tar: return "TAR"
-        case .lzh: return "LHA/LZH"
-        case .iso: return "ISO"
-        case .cab: return "CAB"
-        case .arj: return "ARJ"
-        case .cpio: return "CPIO"
-        case .zCompress: return "Z"
+        case .rar: "RAR"
+        case .sevenZip: "7z"
+        case .zip: "ZIP"
+        case .gzip: "GZIP"
+        case .bzip2: "BZIP2"
+        case .xz: "XZ"
+        case .lzip: "LZIP"
+        case .tar: "TAR"
+        case .lzh: "LHA/LZH"
+        case .iso: "ISO"
+        case .cab: "CAB"
+        case .arj: "ARJ"
+        case .cpio: "CPIO"
+        case .zCompress: "Z"
         }
     }
 
-    var usesUnrar: Bool { self == .rar }
+    var usesUnrar: Bool {
+        self == .rar
+    }
 
     private struct FormatSignature {
         let format: ArchiveFormat
@@ -59,14 +61,14 @@ enum ArchiveFormat: CaseIterable {
 
         for signature in signatures {
             guard signature.offset + signature.bytes.count <= data.count else { continue }
-            let slice = Array(data[signature.offset..<(signature.offset + signature.bytes.count)])
+            let slice = Array(data[signature.offset ..< (signature.offset + signature.bytes.count)])
             if slice == signature.bytes {
                 return signature.format
             }
         }
 
         if data.count > 262 {
-            let tarMagic = Array(data[257..<262])
+            let tarMagic = Array(data[257 ..< 262])
             if tarMagic == [0x75, 0x73, 0x74, 0x61, 0x72] {
                 return .tar
             }
@@ -76,6 +78,6 @@ enum ArchiveFormat: CaseIterable {
     }
 
     static var supportedFormatsText: String {
-        allCases.filter { !$0.usesUnrar }.map { $0.displayName }.joined(separator: " / ")
+        allCases.filter { !$0.usesUnrar }.map(\.displayName).joined(separator: " / ")
     }
 }

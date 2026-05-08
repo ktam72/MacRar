@@ -2,7 +2,7 @@ import AppKit
 import SwiftUI
 
 struct MainView: View {
-    @StateObject private var viewModel = ArchiveViewModel()
+    @EnvironmentObject var viewModel: ArchiveViewModel
 
     var body: some View {
         VStack(spacing: 20) {
@@ -86,7 +86,7 @@ struct DropZoneView: View {
                     .foregroundColor(.blue)
                 Text("アーカイブファイルをここにドロップ")
                     .foregroundColor(.secondary)
-                Text("7z / ZIP / tar / gz / bz2 / xz / LZH / ISO / CAB 等")
+                Text("7z / ZIP / tar / gz / bz2 / xz / LHA/LZH / ISO / CAB 等")
                     .font(.caption)
                     .foregroundColor(.secondary)
                 if let filePath = viewModel.droppedFilePath {

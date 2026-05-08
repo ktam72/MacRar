@@ -3,8 +3,7 @@ import Foundation
 enum ArchiveFormat: CaseIterable {
     case rar
     case sevenZip, zip, gzip, bzip2
-    // swiftlint:disable:next identifier_name
-    case xz
+    case xzip
     case lzip, tar, lzh, iso, cab, arj, cpio, zCompress
 
     var displayName: String {
@@ -14,7 +13,7 @@ enum ArchiveFormat: CaseIterable {
         case .zip: "ZIP"
         case .gzip: "GZIP"
         case .bzip2: "BZIP2"
-        case .xz: "XZ"
+        case .xzip: "XZ"
         case .lzip: "LZIP"
         case .tar: "TAR"
         case .lzh: "LHA/LZH"
@@ -43,7 +42,7 @@ enum ArchiveFormat: CaseIterable {
         FormatSignature(format: .gzip, offset: 0, bytes: [0x1F, 0x8B, 0x08]),
         FormatSignature(format: .bzip2, offset: 0, bytes: [0x42, 0x5A, 0x68]),
         FormatSignature(format: .lzip, offset: 0, bytes: [0x4C, 0x5A, 0x49, 0x50]),
-        FormatSignature(format: .xz, offset: 0, bytes: [0xFD, 0x37, 0x7A, 0x58, 0x5A, 0x00]),
+        FormatSignature(format: .xzip, offset: 0, bytes: [0xFD, 0x37, 0x7A, 0x58, 0x5A, 0x00]),
         FormatSignature(format: .zCompress, offset: 0, bytes: [0x1F, 0x9D]),
         FormatSignature(format: .zCompress, offset: 0, bytes: [0x1F, 0xA0]),
         FormatSignature(format: .cab, offset: 0, bytes: [0x4D, 0x53, 0x43, 0x46]),
@@ -53,11 +52,13 @@ enum ArchiveFormat: CaseIterable {
     ]
 
     static func detect(from url: URL) -> ArchiveFormat? {
-        guard let fileHandle = try? FileHandle(forReadingFrom: url) else { return nil }
+        guard let fileHandle = try? FileHandle(forReadingFrom: url) else {
+            return detectByExtension(from: url)
+        }
         defer { try? fileHandle.close() }
 
         let data = fileHandle.readData(ofLength: 260)
-        guard data.count >= 4 else { return nil }
+        guard data.count >= 4 else { return detectByExtension(from: url) }
 
         for signature in signatures {
             guard signature.offset + signature.bytes.count <= data.count else { continue }
@@ -74,7 +75,18 @@ enum ArchiveFormat: CaseIterable {
             }
         }
 
-        return nil
+        return detectByExtension(from: url)
+    }
+
+    private static func detectByExtension(from url: URL) -> ArchiveFormat? {
+        let ext = url.pathExtension.lowercased()
+        switch ext {
+        case "lha": return .lzh
+        case "tgz": return .gzip
+        case "tbz", "tbz2": return .bzip2
+        case "txz": return .xzip
+        default: return nil
+        }
     }
 
     static var supportedFormatsText: String {

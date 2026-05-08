@@ -64,10 +64,10 @@ UI フレームワーク: SwiftUI + AppKit（NSTextView）
 ## プロジェクト構成
 
 ```
-appMacRar/
+MacRar/
 ├── .gitignore
 ├── project.yml                XcodeGen プロジェクト定義
-├── appMacRar.xcodeproj/
+├── MacRar.xcodeproj/
 │   └── project.pbxproj        Xcode プロジェクトファイル
 ├── Package.swift              SwiftPM（現状 unused）
 ├── LICENSE                    Apache 2.0
@@ -80,9 +80,10 @@ appMacRar/
 │       ├── archive.h          公開ヘッダ
 │       ├── archive_entry.h    公開ヘッダ
 │       └── COPYING            BSD 2-Clause ライセンス
-├── appMacRar/
+├── MacRar/
 │   ├── AppEntry.swift         @main エントリポイント
-│   ├── ArchiveFormat.swift    マジックバイト判定（13形式）
+│   ├── AppDelegate.swift      NSApplicationDelegate
+│   ├── ArchiveFormat.swift    マジックバイト判定（14形式）
 │   ├── ArchiveExtractor.swift libarchive C API ラッパー
 │   ├── BridgingHeader.h       archive.h / archive_entry.h
 │   ├── Info.plist
@@ -113,7 +114,7 @@ appMacRar/
 xcodegen generate
 
 # 2. Xcode で開く
-open appMacRar.xcodeproj
+open MacRar.xcodeproj
 
 # 3. ビルド & 実行（Cmd+R）
 ```
@@ -124,6 +125,10 @@ open appMacRar.xcodeproj
 2. アーカイブファイルをドロップゾーンにドラッグ＆ドロップ
 3. 自動で形式判定され解凍開始、ログに進捗が表示される
 4. 解凍完了後、元ファイルと同じ場所に `ファイル名_uncompressed/` が作成され、Finder で自動的に開く
+
+### Finder からの直接開封
+
+対応するアーカイブファイル（.rar / .7z / .zip / .gz / .bz2 / .xz / .lz / .tar / .lha / .lzh / .iso / .cab / .arj / .cpio / .Z）を Finder でダブルクリックすると MacRar が起動し、自動で解凍を開始します。
 
 ### unrar の更新手順
 

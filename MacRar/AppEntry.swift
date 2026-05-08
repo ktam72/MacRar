@@ -1,10 +1,13 @@
 import SwiftUI
 
 @main
-struct AppMacRar: App {
+struct MacRarApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(appDelegate.viewModel)
         }
         .windowResizability(.contentSize)
     }

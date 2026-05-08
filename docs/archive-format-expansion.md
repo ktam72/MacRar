@@ -144,33 +144,13 @@ MacRar.app/
 │   └── unrar/
 │       ├── unrar                プリコンパイル済みバイナリ（arm64）
 │       └── license.txt          unrar freeware
-├── appMacRar/
-│   ├── AppEntry.swift           @main（windowResizability .contentSize 固定）
-│   ├── ArchiveFormat.swift      マジックバイト判定（13形式）
-│   ├── ArchiveExtractor.swift   libarchive C API ラッパー
-│   ├── BridgingHeader.h         archive.h / archive_entry.h
-│   ├── Info.plist               CFBundleIconFile = MacRar-icon
-│   ├── MacRar-icon.png          アプリアイコン（1636x1658, Display P3）
-│   ├── appMacRar.entitlements
-│   ├── Models/
-│   │   └── UnrarArchive.swift
-│   ├── ViewModels/
-│   │   └── ArchiveViewModel.swift  解凍ロジック + 状態管理
-│   └── Views/
-│       ├── MainView.swift          ドロップゾーン / バージョン表示 / ログ / 進捗
-│       └── LogTextView.swift       NSTextView ラッパー
-└── docs/
-    └── archive-format-expansion.md  本設計書
-```
+├── MacRar/
 
-## project.yml 設定
+│   ├── MacRar.entitlements
 
-```yaml
-targets:
-  appMacRar:
-    settings:
-      ARCHS: arm64
-      SWIFT_OBJC_BRIDGING_HEADER: appMacRar/BridgingHeader.h
+  MacRar:
+
+      SWIFT_OBJC_BRIDGING_HEADER: MacRar/BridgingHeader.h
       OTHER_LDFLAGS: "$(inherited) -L$(SRCROOT)/Libs/libarchive -larchive -lz -lbz2 -llzma -liconv"
       HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Libs/libarchive"
     sources:

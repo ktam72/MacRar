@@ -1,26 +1,26 @@
-name: appMacRar
+name: MacRar
 options:
   bundleIdPrefix: com.example
   createIntermediateGroups: true
 targets:
-  appMacRar:
+  MacRar:
     type: application
     platform: macOS
     deploymentTarget: "13.0"
     sources:
-      - path: appMacRar
+      - path: MacRar
         excludes:
           - BridgingHeader.h
           - Libs
     settings:
       ARCHS: "$(ARCHS_STANDARD)"
       EXCLUDED_ARCHS: x86_64
-      INFOPLIST_FILE: appMacRar/Info.plist
-      SWIFT_OBJC_BRIDGING_HEADER: appMacRar/BridgingHeader.h
+      INFOPLIST_FILE: MacRar/Info.plist
+      SWIFT_OBJC_BRIDGING_HEADER: MacRar/BridgingHeader.h
       OTHER_LDFLAGS: "$(inherited) -L$(SRCROOT)/Libs/libarchive -larchive -lz -lbz2 -llzma -liconv"
       HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Libs/libarchive"
     entitlements:
-      path: appMacRar/appMacRar.entitlements
+      path: MacRar/MacRar.entitlements
     postCompileScripts:
       - name: Copy unrar to MacOS
         script: |

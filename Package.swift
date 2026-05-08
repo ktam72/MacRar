@@ -2,13 +2,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "appMacRar",
+            name: "MacRar",
     platforms: [
         .macOS(.v13)
     ],
     targets: [
         .executableTarget(
-            name: "appMacRar",
+    name: "MacRar",
             dependencies: [],
             cSettings: [
                 .headerSearchPath("Libs/unrar"),

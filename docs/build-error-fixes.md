@@ -46,7 +46,7 @@ settings:
 | エントリ数制限 | `ArchiveExtractor.swift` | `maxEntryCount = 500_000`（元から存在） |
 | Path Traversal 対策 | `ArchiveExtractor.swift` | `ARCHIVE_EXTRACT_SECURE_NODOTDOT` 等のセキュリティフラグ（元から存在） |
 | Hardened Runtime | `project.yml` | `ENABLE_HARDENED_RUNTIME` は署名要件が厳格化されるため除外 |
-| App Sandbox | `appMacRar.entitlements` | Sandbox 導入には保存先選択ダイアログ等の設計変更が必要なため、現状は無効 |
+| App Sandbox | `MacRar.entitlements` | Sandbox 導入には保存先選択ダイアログ等の設計変更が必要なため、現状は無効 |
 
 ## SwiftLint コード品質修正
 

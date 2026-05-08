@@ -64,7 +64,10 @@ UI フレームワーク: SwiftUI + AppKit（NSTextView）
 
 ```
 appMacRar/
+├── .gitignore
 ├── project.yml                XcodeGen プロジェクト定義
+├── appMacRar.xcodeproj/
+│   └── project.pbxproj        Xcode プロジェクトファイル
 ├── Package.swift              SwiftPM（現状 unused）
 ├── LICENSE                    Apache 2.0
 ├── CHANGELOG.md               変更履歴
@@ -91,7 +94,8 @@ appMacRar/
 │   │   ├── MainView.swift     メイン画面（ドロップゾーン + ログ）
 │   │   └── LogTextView.swift  NSTextView ラッパー
 └── docs/
-    └── archive-format-expansion.md  設計書
+    ├── archive-format-expansion.md  設計書
+    └── build-error-fixes.md         ビルドエラー対策
 ```
 
 ## ビルド手順

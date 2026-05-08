@@ -78,15 +78,25 @@ enum ArchiveFormat: CaseIterable {
         return detectByExtension(from: url)
     }
 
+    private static let extensionMap: [String: ArchiveFormat] = {
+        var map: [String: ArchiveFormat] = [:]
+        for (extensions, format) in [
+            (["rar"], .rar), (["7z"], .sevenZip), (["zip"], .zip),
+            (["gz", "tgz"], .gzip), (["bz2", "tbz", "tbz2"], .bzip2),
+            (["xz", "txz"], .xzip), (["lz"], .lzip), (["tar"], .tar),
+            (["lzh", "lha"], .lzh), (["iso"], .iso), (["cab"], .cab),
+            (["arj"], .arj), (["cpio"], .cpio), (["z"], .zCompress)
+        ] as [([String], ArchiveFormat)] {
+            for ext in extensions {
+                map[ext] = format
+            }
+        }
+        return map
+    }()
+
     private static func detectByExtension(from url: URL) -> ArchiveFormat? {
         let ext = url.pathExtension.lowercased()
-        switch ext {
-        case "lha": return .lzh
-        case "tgz": return .gzip
-        case "tbz", "tbz2": return .bzip2
-        case "txz": return .xzip
-        default: return nil
-        }
+        return extensionMap[ext]
     }
 
     static var supportedFormatsText: String {

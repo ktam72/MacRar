@@ -83,14 +83,18 @@ MacRar/
 ├── MacRar/
 │   ├── AppEntry.swift         @main エントリポイント
 │   ├── AppDelegate.swift      NSApplicationDelegate
-│   ├── ArchiveFormat.swift    マジックバイト判定（14形式）
-│   ├── ArchiveExtractor.swift libarchive C API ラッパー
 │   ├── BridgingHeader.h       archive.h / archive_entry.h
 │   ├── Info.plist
 │   ├── Models/
-│   │   └── UnrarArchive.swift モデル
+│   │   ├── ArchiveFormat.swift    マジックバイト判定（14形式）
+│   │   └── UnrarArchive.swift     データモデル
+│   ├── Services/
+│   │   ├── ExtractionService.swift   抽出プロトコル
+│   │   ├── LibArchiveService.swift   libarchive C API ラッパー
+│   │   ├── UnrarService.swift        unrar プロセス実行
+│   │   └── FileSystemService.swift   ファイルシステム操作
 │   ├── ViewModels/
-│   │   └── ArchiveViewModel.swift 解凍ロジック + 状態管理
+│   │   └── ArchiveViewModel.swift    オーケストレーション + 状態管理
 │   ├── Views/
 │   │   ├── MainView.swift     メイン画面（ドロップゾーン + ログ）
 │   │   └── LogTextView.swift  NSTextView ラッパー
